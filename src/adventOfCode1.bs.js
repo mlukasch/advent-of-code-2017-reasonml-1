@@ -4,6 +4,7 @@
 var $$Array     = require("bs-platform/lib/js/array.js");
 var $$String    = require("bs-platform/lib/js/string.js");
 var Caml_array  = require("bs-platform/lib/js/caml_array.js");
+var Caml_int32  = require("bs-platform/lib/js/caml_int32.js");
 var Caml_format = require("bs-platform/lib/js/caml_format.js");
 var Caml_string = require("bs-platform/lib/js/caml_string.js");
 
@@ -22,15 +23,14 @@ function intFromChar($$char) {
 }
 
 function solveCapthcha(captcha) {
-  var circularCaptcha = captcha + $$String.make(1, Caml_string.get(captcha, 0));
-  var length = circularCaptcha.length;
+  var length = captcha.length;
   var arr = Caml_array.caml_make_vect(length, /* tuple */[
         0,
         0
       ]);
-  for(var n = 0 ,n_finish = length - 2 | 0; n <= n_finish; ++n){
-    var x = Caml_string.get(circularCaptcha, n);
-    var y = Caml_string.get(circularCaptcha, n + 1 | 0);
+  for(var n = 0 ,n_finish = length - 1 | 0; n <= n_finish; ++n){
+    var x = Caml_string.get(captcha, n);
+    var y = Caml_string.get(captcha, Caml_int32.mod_(n + 1 | 0, length));
     Caml_array.caml_array_set(arr, n, /* tuple */[
           Caml_format.caml_int_of_string($$String.make(1, x)),
           Caml_format.caml_int_of_string($$String.make(1, y))

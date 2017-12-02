@@ -12,12 +12,11 @@ let captcha5 = "9384274494683632359351641411374573466273164687337536769779487433
 let intFromChar = (char) => int_of_string(String.make(1, char));
 
 let solveCapthcha = (captcha) => {
-  let circularCaptcha = captcha ++ String.make(1, captcha.[0]);
-  let length = String.length(circularCaptcha);
+  let length = String.length(captcha);
   let arr = Array.make(length, (0, 0));
-  for (n in 0 to length - 2) {
-    let x = circularCaptcha.[n];
-    let y = circularCaptcha.[n + 1];
+  for (n in 0 to length - 1) {
+    let x = captcha.[n];
+    let y = captcha.[(n + 1) mod length];
     arr[n] = (intFromChar(x), intFromChar(y))
   };
   arr

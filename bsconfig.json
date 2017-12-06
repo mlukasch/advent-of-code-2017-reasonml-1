@@ -4,7 +4,7 @@
   "name": "advent-of-code",
   "version": "0.1.0",
   "sources": [
-    "src"
+    {"dir": "src", "subdirs": true}
   ],
   "package-specs": {
     "module": "commonjs",

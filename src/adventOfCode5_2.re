@@ -1016,13 +1016,19 @@ let rec splitAt = (n, acc, l) =>
 
 let split = (n, l) => splitAt(n, [], l);
 
+/* pretty slow; mutating the array directly would be 1000x faster I think */
 let rec jumpAround = (input, pos, steps) => {
   let value = split(pos, input);
   switch value {
   | (first, [hd, ...tail]) =>
-    jumpAround(List.concat([first, [hd + 1, ...tail]]), pos + hd, steps + 1)
+    let delta = hd >= 3 ? hd - 1 : hd + 1;
+    jumpAround(List.concat([first, [delta, ...tail]]), pos + hd, steps + 1)
   | _ => steps
   }
 };
 
+Js.log("start");
+
 Js.log(jumpAround(input, 0, 0));
+
+Js.log("stop");

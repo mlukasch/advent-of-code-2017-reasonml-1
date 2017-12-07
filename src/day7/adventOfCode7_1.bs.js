@@ -3,6 +3,7 @@
 
 var $$Array                 = require("bs-platform/lib/js/array.js");
 var Caml_array              = require("bs-platform/lib/js/caml_array.js");
+var Caml_format             = require("bs-platform/lib/js/caml_format.js");
 var Js_primitive            = require("bs-platform/lib/js/js_primitive.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
@@ -24,28 +25,27 @@ function number(string) {
   }
 }
 
-var testInput = "pbga (66)\nxhth (57)\nebii (61)\nhavc (66)\nktlj (57)\nfwft (72) -> ktlj, cntj, xhth\nqoyq (66)\npadx (45) -> pbga, havc, qoyq\ntknk (41) -> ugml, padx, fwft\njptl (61)\nugml (68) -> gyxo, ebii, jptl\ngyxo (61)\ncntj (57)".split("\n");
-
-console.log($$Array.map((function (a) {
-            var match = words(a);
-            if (match) {
-              var index = number(a);
-              return /* tuple */[
-                      match[0],
-                      index,
-                      match[1]
-                    ];
-            } else {
-              throw [
-                    Caml_builtin_exceptions.match_failure,
-                    [
-                      "/Users/Nykanen/Projects/oss/advent-of-code/src/day7/adventOfCode7_1.re",
-                      24,
-                      13
-                    ]
-                  ];
-            }
-          }), testInput));
+var testInput = $$Array.map((function (a) {
+        var match = words(a);
+        if (match) {
+          var match$1 = number(a);
+          var index = match$1 ? Caml_format.caml_int_of_string(match$1[0]) : 0;
+          return /* tuple */[
+                  match[0],
+                  index,
+                  match[1]
+                ];
+        } else {
+          throw [
+                Caml_builtin_exceptions.match_failure,
+                [
+                  "/Users/Nykanen/Projects/oss/advent-of-code/src/day7/adventOfCode7_1.re",
+                  34,
+                  13
+                ]
+              ];
+        }
+      }), "pbga (66)\nxhth (57)\nebii (61)\nhavc (66)\nktlj (57)\nfwft (72) -> ktlj, cntj, xhth\nqoyq (66)\npadx (45) -> pbga, havc, qoyq\ntknk (41) -> ugml, padx, fwft\njptl (61)\nugml (68) -> gyxo, ebii, jptl\ngyxo (61)\ncntj (57)".split("\n"));
 
 exports.words     = words;
 exports.number    = number;

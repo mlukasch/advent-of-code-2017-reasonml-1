@@ -62,7 +62,7 @@ let findParentByName = (name) =>
   };
 
 let rec getChildWeight = (x) => {
-  let (name, ownWeight, _) = x;
+  let (_, ownWeight, _) = x;
   let items = childrenToItems(x);
   let childrenWeight =
     items
@@ -121,11 +121,10 @@ let checkIndexMatch = (compareTo, parent) =>
      );
 
 let rec isBalanced = (item) => {
-  let (name, weight, _) = item;
+  let (name, _, _) = item;
   let parent = findParentByName(name);
-  let (_, parentIndex, _) = parent;
   let nodeWeight = getChildWeight(item);
-  let isWeighted = checkIndexMatch(nodeWeight, parent);
+  checkIndexMatch(nodeWeight, parent) |> ignore;
   isBalanced(parent)
 };
 

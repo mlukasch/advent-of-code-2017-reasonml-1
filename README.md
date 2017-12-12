@@ -31,7 +31,7 @@ npm start
 | 9    | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
 | 10   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
 | 11   | <ul><li>[x] </li></ul> | <ul><li>[x] </li></ul> |
-| 12   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
+| 12   | <ul><li>[x] </li></ul> | <ul><li>[ ] </li></ul> |
 | 13   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
 | 14   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
 | 15   | <ul><li>[ ] </li></ul> | <ul><li>[ ] </li></ul> |
